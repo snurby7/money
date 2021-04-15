@@ -1,8 +1,6 @@
 {
   "version": 2,
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
+  "cli": { "defaultCollection": "@nrwl/react" },
   "defaultProject": "lightning",
   "generators": {
     "@nrwl/react": {
@@ -11,13 +9,8 @@
         "linter": "eslint",
         "babel": true
       },
-      "component": {
-        "style": "styled-components"
-      },
-      "library": {
-        "style": "styled-components",
-        "linter": "eslint"
-      }
+      "component": { "style": "styled-components" },
+      "library": { "style": "styled-components", "linter": "eslint" }
     }
   },
   "projects": {
@@ -70,13 +63,9 @@
         },
         "serve": {
           "executor": "@nrwl/web:dev-server",
-          "options": {
-            "buildTarget": "lightning:build"
-          },
+          "options": { "buildTarget": "lightning:build" },
           "configurations": {
-            "production": {
-              "buildTarget": "lightning:build:production"
-            }
+            "production": { "buildTarget": "lightning:build:production" }
           }
         },
         "lint": {
@@ -108,15 +97,95 @@
             "devServerTarget": "lightning:serve"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "lightning:serve:production"
-            }
+            "production": { "devServerTarget": "lightning:serve:production" }
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["apps/lightning-e2e/**/*.{js,ts}"] }
+        }
+      }
+    },
+    "api": {
+      "root": "apps/api",
+      "sourceRoot": "apps\\api\\src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
           "options": {
-            "lintFilePatterns": ["apps/lightning-e2e/**/*.{js,ts}"]
+            "outputPath": "dist/apps/api",
+            "main": "apps/api/src/main.ts",
+            "tsConfig": "apps/api/tsconfig.app.json",
+            "assets": ["apps/api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/src/environments/environment.ts",
+                  "with": "apps/api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": { "buildTarget": "api:build" }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["apps/api/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/api"],
+          "options": {
+            "jestConfig": "apps/api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "interfaces": {
+      "root": "libs/interfaces",
+      "sourceRoot": "libs/interfaces/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/interfaces/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/interfaces"],
+          "options": {
+            "jestConfig": "libs/interfaces/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "contracts": {
+      "root": "libs/contracts",
+      "sourceRoot": "libs/contracts/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/contracts/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/contracts"],
+          "options": {
+            "jestConfig": "libs/contracts/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

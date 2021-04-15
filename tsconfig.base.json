@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@snurbco/interfaces": ["libs/interfaces/src/index.ts"],
+      "@snurbco/contracts": ["libs/contracts/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
