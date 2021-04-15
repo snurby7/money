@@ -1,0 +1,125 @@
+{
+  "version": 2,
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "defaultProject": "lightning",
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "styled-components",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "styled-components"
+      },
+      "library": {
+        "style": "styled-components",
+        "linter": "eslint"
+      }
+    }
+  },
+  "projects": {
+    "lightning": {
+      "root": "apps/lightning",
+      "sourceRoot": "apps/lightning/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/lightning",
+            "index": "apps/lightning/src/index.html",
+            "main": "apps/lightning/src/main.tsx",
+            "polyfills": "apps/lightning/src/polyfills.ts",
+            "tsConfig": "apps/lightning/tsconfig.app.json",
+            "assets": [
+              "apps/lightning/src/favicon.ico",
+              "apps/lightning/src/assets"
+            ],
+            "styles": [],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/lightning/src/environments/environment.ts",
+                  "with": "apps/lightning/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "lightning:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "lightning:build:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/lightning/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/lightning"],
+          "options": {
+            "jestConfig": "apps/lightning/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lightning-e2e": {
+      "root": "apps/lightning-e2e",
+      "sourceRoot": "apps/lightning-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/lightning-e2e/cypress.json",
+            "tsConfig": "apps/lightning-e2e/tsconfig.e2e.json",
+            "devServerTarget": "lightning:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "lightning:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/lightning-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  }
+}
