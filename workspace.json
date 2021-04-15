@@ -1,6 +1,8 @@
 {
   "version": 2,
-  "cli": { "defaultCollection": "@nrwl/react" },
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
   "defaultProject": "lightning",
   "generators": {
     "@nrwl/react": {
@@ -9,8 +11,13 @@
         "linter": "eslint",
         "babel": true
       },
-      "component": { "style": "styled-components" },
-      "library": { "style": "styled-components", "linter": "eslint" }
+      "component": {
+        "style": "styled-components"
+      },
+      "library": {
+        "style": "styled-components",
+        "linter": "eslint"
+      }
     }
   },
   "projects": {
@@ -21,7 +28,9 @@
       "targets": {
         "build": {
           "executor": "@nrwl/web:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/lightning",
             "index": "apps/lightning/src/index.html",
@@ -63,20 +72,28 @@
         },
         "serve": {
           "executor": "@nrwl/web:dev-server",
-          "options": { "buildTarget": "lightning:build" },
+          "options": {
+            "buildTarget": "lightning:build"
+          },
           "configurations": {
-            "production": { "buildTarget": "lightning:build:production" }
+            "production": {
+              "buildTarget": "lightning:build:production"
+            }
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/lightning/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "apps/lightning/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/lightning"],
+          "outputs": [
+            "coverage/apps/lightning"
+          ],
           "options": {
             "jestConfig": "apps/lightning/jest.config.js",
             "passWithNoTests": true
@@ -97,12 +114,18 @@
             "devServerTarget": "lightning:serve"
           },
           "configurations": {
-            "production": { "devServerTarget": "lightning:serve:production" }
+            "production": {
+              "devServerTarget": "lightning:serve:production"
+            }
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": { "lintFilePatterns": ["apps/lightning-e2e/**/*.{js,ts}"] }
+          "options": {
+            "lintFilePatterns": [
+              "apps/lightning-e2e/**/*.{js,ts}"
+            ]
+          }
         }
       }
     },
@@ -113,12 +136,16 @@
       "targets": {
         "build": {
           "executor": "@nrwl/node:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/api",
             "main": "apps/api/src/main.ts",
             "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": ["apps/api/src/assets"]
+            "assets": [
+              "apps/api/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -136,36 +163,25 @@
         },
         "serve": {
           "executor": "@nrwl/node:execute",
-          "options": { "buildTarget": "api:build" }
+          "options": {
+            "buildTarget": "api:build"
+          }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": { "lintFilePatterns": ["apps/api/**/*.ts"] }
+          "options": {
+            "lintFilePatterns": [
+              "apps/api/**/*.ts"
+            ]
+          }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/api"],
+          "outputs": [
+            "coverage/apps/api"
+          ],
           "options": {
             "jestConfig": "apps/api/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "interfaces": {
-      "root": "libs/interfaces",
-      "sourceRoot": "libs/interfaces/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": { "lintFilePatterns": ["libs/interfaces/**/*.ts"] }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/interfaces"],
-          "options": {
-            "jestConfig": "libs/interfaces/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -178,11 +194,17 @@
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": { "lintFilePatterns": ["libs/contracts/**/*.ts"] }
+          "options": {
+            "lintFilePatterns": [
+              "libs/contracts/**/*.ts"
+            ]
+          }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/contracts"],
+          "outputs": [
+            "coverage/libs/contracts"
+          ],
           "options": {
             "jestConfig": "libs/contracts/jest.config.js",
             "passWithNoTests": true
