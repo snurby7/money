@@ -1,9 +1,9 @@
-import { ITransaction } from '@snurbco/contracts';
+import { ITransaction, ITransactionDetail } from '@snurbco/contracts';
 import { IAccountLinkedNodeMeta, IAccountLinkRequest } from '../account';
 
 export interface ICommonAccountConverter {
   convertTransactionToAccountLink: (
-    transaction: ITransaction,
+    transaction: ITransactionDetail,
     transactionAmount: number
   ) => IAccountLinkedNodeMeta;
   convertToAccountLinkResponse: (

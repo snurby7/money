@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { IPayee, ITransaction } from '@snurbco/contracts';
+import { IPayee, ITransaction, ITransactionDetail } from '@snurbco/contracts';
 import { Observable } from 'rxjs';
 import { materialize, toArray } from 'rxjs/operators';
 import { SupportedLabel } from '../constants';
@@ -67,13 +67,13 @@ export class PayeeService
   /**
    * Converts the transaction into something that can be used to reference an Account
    *
-   * @param {ITransaction} transaction Transaction to scrape data out of
+   * @param {ITransactionDetail} transaction Transaction to scrape data out of
    * @param {number} transactionAmount The transaction amount (+, -, 0)
    * @returns {IAccountLinkedNodeMeta}
    * @memberof CategoryService
    */
   public convertTransactionToAccountLink(
-    transaction: ITransaction,
+    transaction: ITransactionDetail,
     transactionAmount: number
   ): IAccountLinkedNodeMeta {
     return {

@@ -79,8 +79,8 @@ export class TransactionService {
    * @memberof TransactionService
    */
   private updateLinkedNodeBalanceByService$(
-    transaction: ITransaction
-  ): Observable<ITransaction> {
+    transaction: ITransactionDetail
+  ): Observable<ITransactionDetail> {
     const amount = this.getTransactionAmount(transaction);
     const services = [
       this.accountService,
@@ -245,11 +245,11 @@ export class TransactionService {
    * it takes the inflow as the priority and the outflow as the secondary.
    *
    * @private
-   * @param {ITransaction} transaction
+   * @param {ITransactionDetail} transaction
    * @returns {number}
    * @memberof TransactionService
    */
-  private getTransactionAmount(transaction: ITransaction): number {
+  private getTransactionAmount(transaction: ITransactionDetail): number {
     return transaction.inflow ? transaction.inflow : transaction.outflow || 0;
   }
 
