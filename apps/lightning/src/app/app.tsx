@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-
+import styled from '@emotion/styled';
 import { ReactComponent as Logo } from './logo.svg';
 import star from './star.svg';
 
