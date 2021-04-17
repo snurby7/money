@@ -2,8 +2,8 @@ const Icon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="1049.58"
-      height="678.59"
+      width="650"
+      height="500"
       data-name="Layer 1"
       viewBox="0 0 1049.58 678.59"
     >

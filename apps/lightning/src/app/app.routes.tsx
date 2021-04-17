@@ -1,18 +1,19 @@
 import { Suspense } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { baseRoute } from './features/base';
+import { signUpRoutes } from './features/sign-up';
 
-const appRoutes = [...baseRoute];
+const appRoutes = [...baseRoute, ...signUpRoutes];
 
 const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
-          {appRoutes.map(({ component, path }) => (
+          {appRoutes.map(({ component, path, exact }) => (
             <Route
               key={path.toString()}
-              exact
+              exact={exact}
               path={path}
               component={component}
             />

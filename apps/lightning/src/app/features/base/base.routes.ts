@@ -3,7 +3,8 @@ import { RouteProps } from 'react-router-dom';
 
 export const baseRoute: RouteProps[] = [
   {
-    path: '',
+    path: '/',
+    exact: true,
     component: lazy(() => import('./BasePage')),
   },
 ];
