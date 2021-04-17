@@ -1,11 +1,11 @@
-import { Button, Container, Heading } from '@chakra-ui/react';
+import { Button, Container, Heading, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
 const CallToActionBase = () => {
   return (
     <Container height={'100%'}>
-      <Heading>Start caring about your finances</Heading>
-      <div>here is some content</div>
+      <Heading>start caring about your finances</Heading>
+      <Text>visuals and insights into your dollars</Text>
       <div>
         <Link to={'/sign-up'}>
           <Button m="4" backgroundColor="purple" color="white">
