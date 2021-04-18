@@ -1,6 +1,6 @@
 import { Button, Container, Heading, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import { LightningRoutePath } from '../../feature-path.routes';
+import { FeatureRoutePath } from '../../feature-path.routes';
 
 const CallToActionBase = () => {
   return (
@@ -8,7 +8,7 @@ const CallToActionBase = () => {
       <Heading>start caring about your finances</Heading>
       <Text>visuals and insights into your dollars</Text>
       <div>
-        <Link to={LightningRoutePath.Login}>
+        <Link to={FeatureRoutePath.Login}>
           <Button m="4" backgroundColor="purple" color="white">
             Get Started
           </Button>

@@ -1,10 +1,10 @@
 import { lazy } from 'react';
 import { RouteProps } from 'react-router-dom';
-import { LightningRoutePath } from '../feature-path.routes';
+import { FeatureRoutePath } from '../feature-path.routes';
 
 export const loginRoutes: RouteProps[] = [
   {
-    path: LightningRoutePath.Login,
+    path: FeatureRoutePath.Login,
     component: lazy(() => import('./LoginPage')),
   },
 ];

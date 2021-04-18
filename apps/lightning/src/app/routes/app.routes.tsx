@@ -1,6 +1,9 @@
-import { Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { featureRoutes } from '../features/feature.routes';
+import { LightningPathRoutes } from '../lightning/lightning-path.routes';
+import { featureRoutes } from '../pages/feature.routes';
+
+const LazyLightning = lazy(() => import('../lightning/lightning.router'));
 
 const AppRoutes = () => {
   return (
@@ -15,6 +18,7 @@ const AppRoutes = () => {
               component={component}
             />
           ))}
+          <Route path={LightningPathRoutes.App} component={LazyLightning} />
         </Switch>
       </Suspense>
     </BrowserRouter>
