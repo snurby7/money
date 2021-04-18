@@ -1,17 +1,11 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import AppRoutes from './app.routes';
-
-const StyledMain = styled.main`
-  background-color: #f5f5f5;
-`;
+import AppRoutes from './routes/app.routes';
 
 export function App() {
   return (
     <ChakraProvider>
-      <StyledMain>
-        <AppRoutes />
-      </StyledMain>
+      <AppRoutes />
     </ChakraProvider>
   );
 }

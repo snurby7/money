@@ -8,6 +8,7 @@ import {
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import Auth0Button from '../../../auth/Auth0Button';
 
 const SignInForm = () => {
   return (
@@ -44,9 +45,7 @@ const SignInForm = () => {
         )}
       </Formik>
 
-      <Button mt={4} colorScheme="orange">
-        Sign in with Auth0
-      </Button>
+      <Auth0Button>Sign in with Auth0</Auth0Button>
     </Flex>
   );
 };
