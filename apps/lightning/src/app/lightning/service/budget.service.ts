@@ -8,14 +8,21 @@ enum ApiRoute {
 }
 
 class BudgetService {
+  public budgetCache: Record<string, IBudget> = JSON.parse(
+    sessionStorage.getItem('SNURBCO_Budgets') ?? '{}'
+  );
+
   public async createBudget(name: string): Promise<IBudget> {
     const response = await axiosInstance.post<IBudget>(ApiRoute.CreateBudget, {
       name,
     });
     return response.data;
   }
+
   public async loadBudgets(): Promise<IBudget[]> {
     const response = await axiosInstance.get<IBudget[]>(ApiRoute.LoadBudgets);
+    response.data.forEach((budget) => (this.budgetCache[budget.id] = budget));
+    sessionStorage.setItem('SNURBCO_Budgets', JSON.stringify(this.budgetCache));
     return response.data;
   }
 
