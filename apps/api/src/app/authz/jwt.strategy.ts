@@ -15,7 +15,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         jwksRequestsPerMinute: 5,
         jwksUri: `${process.env.NX_AUTH0_DOMAIN}.well-known/jwks.json`,
       }),
-
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       audience: process.env.NX_AUTH0_AUDIENCE,
       issuer: `${process.env.NX_AUTH0_DOMAIN}`,

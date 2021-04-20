@@ -171,8 +171,8 @@ export class AccountService
   /**
    * Convert a stored transaction and it's updated request to a LinkResponse
    *
-   * @param {ITransaction} currentTransaction
-   * @param {ITransaction} transactionUpdateRequest
+   * @param {ITransactionDetail} currentTransaction
+   * @param {ITransactionDetail} transactionUpdateRequest
    * @param {string} linkingRelationship
    * @param {number} currentTransactionAmount
    * @param {number} updatedTransactionRequestAmount
@@ -180,8 +180,8 @@ export class AccountService
    * @memberof CategoryService
    */
   public convertToAccountLinkResponse(
-    currentTransaction: ITransaction,
-    transactionUpdateRequest: ITransaction,
+    currentTransaction: ITransactionDetail,
+    transactionUpdateRequest: ITransactionDetail,
     linkingRelationship: string,
     currentTransactionAmount: number,
     updatedTransactionRequestAmount: number

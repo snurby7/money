@@ -28,7 +28,9 @@
       "targets": {
         "build": {
           "executor": "@nrwl/web:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/lightning",
             "index": "apps/lightning/src/index.html",
@@ -71,7 +73,8 @@
         "serve": {
           "executor": "@nrwl/web:dev-server",
           "options": {
-            "buildTarget": "lightning:build"
+            "buildTarget": "lightning:build",
+            "proxyConfig": "apps/lightning/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -82,12 +85,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/lightning/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "apps/lightning/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/lightning"],
+          "outputs": [
+            "coverage/apps/lightning"
+          ],
           "options": {
             "jestConfig": "apps/lightning/jest.config.js",
             "passWithNoTests": true
@@ -116,7 +123,9 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/lightning-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/lightning-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -128,12 +137,16 @@
       "targets": {
         "build": {
           "executor": "@nrwl/node:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/api",
             "main": "apps/api/src/main.ts",
             "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": ["apps/api/src/assets"]
+            "assets": [
+              "apps/api/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -158,12 +171,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/api/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/api/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/api"],
+          "outputs": [
+            "coverage/apps/api"
+          ],
           "options": {
             "jestConfig": "apps/api/jest.config.js",
             "passWithNoTests": true
@@ -179,12 +196,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/contracts/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/contracts/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/contracts"],
+          "outputs": [
+            "coverage/libs/contracts"
+          ],
           "options": {
             "jestConfig": "libs/contracts/jest.config.js",
             "passWithNoTests": true
@@ -199,7 +220,9 @@
       "targets": {
         "build": {
           "executor": "@nrwl/web:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/lightning-v3",
             "index": "apps/lightning-v3/src/index.html",
@@ -253,12 +276,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/lightning-v3/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "apps/lightning-v3/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/lightning-v3"],
+          "outputs": [
+            "coverage/apps/lightning-v3"
+          ],
           "options": {
             "jestConfig": "apps/lightning-v3/jest.config.js",
             "passWithNoTests": true
@@ -287,7 +314,9 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/lightning-v3-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/lightning-v3-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }

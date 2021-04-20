@@ -1,6 +1,6 @@
 import {
   ICreateTransaction,
-  ITransaction,
+  ITransactionDetail,
   ITransactionQuery,
 } from '@snurbco/contracts';
 import { v4 as uuid } from 'uuid';
@@ -110,12 +110,12 @@ export const TransactionQueries = {
    * Function to give you back a statement and properties for updating a given transaction
    *
    * @param {string} resultKey
-   * @param {ITransaction} request
+   * @param {ITransactionDetail} request
    * @returns {ExecuteStatement}
    */
   updateTransaction: (
     resultKey: string,
-    request: ITransaction
+    request: ITransactionDetail
   ): ExecuteStatement => ({
     query: `
     MATCH (${resultKey}:${SupportedLabel.Transaction} { id: $id})

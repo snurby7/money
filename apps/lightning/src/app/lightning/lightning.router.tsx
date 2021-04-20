@@ -1,11 +1,12 @@
-import { Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+import { AuthenticatedRoute } from '../auth/AuthenticatedRoute';
 import { lightningRoutes } from './lightning.routes';
 
 const LightningRouter = () => {
   return (
     <Switch>
       {lightningRoutes.map((routeProps) => (
-        <Route key={routeProps.path.toString()} {...routeProps} />
+        <AuthenticatedRoute key={routeProps.path.toString()} {...routeProps} />
       ))}
     </Switch>
   );

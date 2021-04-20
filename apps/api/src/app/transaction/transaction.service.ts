@@ -127,12 +127,12 @@ export class TransactionService {
    * Function that will update a given transaction. If the ids no longer match they will remove the relationships and
    * tie a new relationship. Otherwise it will just update the balances by refunding and charging the new one.
    *
-   * @param {ITransaction} request
+   * @param {ITransactionDetail} request
    * @returns {Observable<ITransactionDetail>}
    * @memberof TransactionService
    */
   public updateTransaction$(
-    request: ITransaction
+    request: ITransactionDetail
   ): Observable<ITransactionDetail> {
     const findMatchingTransaction$ = this.getTransaction(
       request.id,
@@ -148,7 +148,7 @@ export class TransactionService {
     );
 
     return findMatchingTransaction$.pipe(
-      switchMap((transaction: ITransaction) =>
+      switchMap((transaction: ITransactionDetail) =>
         forkJoin([...this.updateLinkedNodeBalance$(transaction, request)])
       ),
       flatMap(() => this.updateTransactionProperties$(request))
@@ -222,8 +222,8 @@ export class TransactionService {
    * @memberof TransactionService
    */
   private updateTransactionProperties$(
-    request: ITransaction
-  ): Observable<ITransaction> {
+    request: ITransactionDetail
+  ): Observable<ITransactionDetail> {
     const resultKey = 'transactionNode';
     const { query, params } = TransactionQueries.updateTransaction(
       resultKey,
@@ -234,7 +234,7 @@ export class TransactionService {
         .run(query, params)
         .records()
         .pipe(
-          getRecordsByKey<ITransaction>(resultKey),
+          getRecordsByKey<ITransactionDetail>(resultKey),
           catchError((err) => throwError(err))
         )
     );
@@ -258,14 +258,14 @@ export class TransactionService {
    * an account, payee, and a transaction. Since it doesn't matter how they run, they all run in parallel
    *
    * @private
-   * @param {ITransaction} transaction
+   * @param {ITransactionDetail} transaction
    * @param {ITransaction} request
    * @returns {Observable<any>}
    * @memberof TransactionService
    */
   private updateLinkedNodeBalance$(
-    transaction: ITransaction,
-    request: ITransaction
+    transaction: ITransactionDetail,
+    request: ITransactionDetail
   ): Observable<IAccountLinkResponse>[] {
     interface ServiceRelationshipLink {
       service: PayeeService | AccountService | CategoryService;

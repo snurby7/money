@@ -7,8 +7,8 @@ export interface ICommonAccountConverter {
     transactionAmount: number
   ) => IAccountLinkedNodeMeta;
   convertToAccountLinkResponse: (
-    currentTransaction: ITransaction,
-    transactionUpdateRequest: ITransaction,
+    currentTransaction: ITransactionDetail,
+    transactionUpdateRequest: ITransactionDetail,
     linkingRelationship: string,
     currentTransactionAmount: number,
     updatedTransactionRequestAmount: number
