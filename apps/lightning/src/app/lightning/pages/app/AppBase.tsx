@@ -1,32 +1,56 @@
-import { Button } from '@chakra-ui/react';
-import { IBudget } from '@snurbco/contracts';
-import { useEffect } from 'react';
-import { from } from 'rxjs';
-import { useRouter } from '../../../routes/useRouter';
-import { LightningPathRoutes } from '../../lightning-path.routes';
+import { Button, Center, Flex, StackDivider, VStack } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { useObservable } from '../../../hooks';
 import { budgetService } from '../../service/budget.service';
+import AddBudgetModal from './components/AddBudgetModal';
+import BudgetTile from './components/BudgetTile';
 
 const AppBase = () => {
-  const router = useRouter();
+  const [isAddBudgetModalOpen, setIsAddBudgetModalOpen] = useState(false);
+  const [initialLoadAttempt, setInitialLoadAttempt] = useState(false);
+  const budgets = useObservable(budgetService.budgets, []);
+
+  const refreshBudgetList = () => {
+    budgetService.loadBudgets();
+  };
+
   useEffect(() => {
-    from(budgetService.loadBudgets()).subscribe({
-      next: (budgets: IBudget[]) => {
-        console.log('here are the budgets', budgets);
-      },
-    });
-  }, []);
+    if (!initialLoadAttempt) {
+      refreshBudgetList();
+      setInitialLoadAttempt(true);
+    }
+  }, [initialLoadAttempt]);
 
   return (
-    <div>
-      Here is the application base
-      <Button
-        onClick={() =>
-          router.navigateTo(LightningPathRoutes.BudgetHome, { budgetId: '123' })
-        }
-      >
-        Click
-      </Button>
-    </div>
+    <Center mt={12}>
+      <Flex direction="column">
+        <VStack
+          divider={<StackDivider borderColor="gray.200" />}
+          spacing={4}
+          align="stretch"
+        >
+          {budgets.map((budget) => (
+            <BudgetTile key={budget.id} budget={budget} />
+          ))}
+        </VStack>
+        <Button
+          mt="4"
+          width="100%"
+          onClick={() => {
+            setIsAddBudgetModalOpen(true);
+          }}
+        >
+          Add new budget
+        </Button>
+        <AddBudgetModal
+          isOpen={isAddBudgetModalOpen}
+          onClose={() => {
+            refreshBudgetList();
+            setIsAddBudgetModalOpen(false);
+          }}
+        />
+      </Flex>
+    </Center>
   );
 };
 

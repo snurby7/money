@@ -1,4 +1,5 @@
 import { IBudget } from '@snurbco/contracts';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { replaceKeyPlaceholders } from '../../utils';
 import { axiosInstance } from './axios-instance';
 enum ApiRoute {
@@ -8,9 +9,17 @@ enum ApiRoute {
 }
 
 class BudgetService {
-  public budgetCache: Record<string, IBudget> = JSON.parse(
+  private budgetCache: Record<string, IBudget> = JSON.parse(
     sessionStorage.getItem('SNURBCO_Budgets') ?? '{}'
   );
+
+  private _budgets = new BehaviorSubject<IBudget[]>(
+    Object.values(this.budgetCache) ?? []
+  );
+
+  public get budgets(): Observable<IBudget[]> {
+    return this._budgets.asObservable();
+  }
 
   public async createBudget(name: string): Promise<IBudget> {
     const response = await axiosInstance.post<IBudget>(ApiRoute.CreateBudget, {
@@ -21,14 +30,23 @@ class BudgetService {
 
   public async loadBudgets(): Promise<IBudget[]> {
     const response = await axiosInstance.get<IBudget[]>(ApiRoute.LoadBudgets);
-    response.data.forEach((budget) => (this.budgetCache[budget.id] = budget));
-    sessionStorage.setItem('SNURBCO_Budgets', JSON.stringify(this.budgetCache));
+    if (response.data.length > 0) {
+      this._budgets.next(response.data);
+      sessionStorage.setItem(
+        'SNURBCO_Budgets',
+        JSON.stringify(this.budgetCache)
+      );
+      response.data.forEach((budget) => (this.budgetCache[budget.id] = budget));
+    }
     return response.data;
   }
 
   public async deleteBudget(budgetId: string): Promise<IBudget[]> {
     const response = await axiosInstance.delete(
       replaceKeyPlaceholders(ApiRoute.DeleteBudget, { budgetId })
+    );
+    this._budgets.next(
+      this._budgets.value.filter((budget) => budget.id !== budgetId)
     );
     return response.data;
   }
