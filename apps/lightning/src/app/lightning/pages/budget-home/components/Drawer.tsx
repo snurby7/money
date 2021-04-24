@@ -9,11 +9,15 @@ import {
   DrawerHeader,
   DrawerOverlay,
   Flex,
+  Icon,
   VStack,
 } from '@chakra-ui/react';
 import { useState } from 'react';
+import { AiOutlineRightSquare } from 'react-icons/ai';
+import { BsCardList, BsLightning } from 'react-icons/bs';
+import { RiBankFill, RiLineChartLine } from 'react-icons/ri';
 
-function NavigationDrawer() {
+const NavigationDrawer: React.FC = () => {
   const [isNavigationDrawerOpen, setIsNavigationDrawerOpen] = useState(false);
   const toggleNavigationDrawer = () => {
     setIsNavigationDrawerOpen(!isNavigationDrawerOpen);
@@ -22,28 +26,48 @@ function NavigationDrawer() {
   return (
     <>
       {!isNavigationDrawerOpen && (
-        <Flex direction="column" width="100px" p={2} mr={4}>
-          <VStack flexGrow={1} spacing={4} alignItems="center">
-            <Box w="100px" bg="yellow.200">
-              Icon
+        <Flex direction="column" mr={4} bg="purple.300">
+          <VStack flexGrow={1} spacing={4}>
+            <Box>
+              <Button
+                variant="ghost"
+                leftIcon={<Icon as={BsLightning} w={6} h={6} />}
+              >
+                {/* Settings eventually */}
+              </Button>
             </Box>
-            <Box w="100px" bg="yellow.200">
-              Budget
+            <Box>
+              <Button
+                variant="ghost"
+                leftIcon={<Icon as={BsCardList} w={6} h={6} />}
+              >
+                {/* Budget */}
+              </Button>
             </Box>
-            <Box w="100px" bg="tomato">
-              Reports
+            <Box>
+              <Button
+                variant="ghost"
+                leftIcon={<Icon as={RiLineChartLine} w={6} h={6} />}
+              >
+                {/* Reports */}
+              </Button>
             </Box>
-            <Box w="100px" bg="pink.100">
-              All Accounts
+            <Box>
+              <Button
+                variant="ghost"
+                leftIcon={<Icon as={RiBankFill} w={6} h={6} />}
+              >
+                {/* All Accounts */}
+              </Button>
+              {/* All Accounts */}
+            </Box>
+            <Box>
+              <Button variant="ghost" onClick={toggleNavigationDrawer}>
+                {/* Open Drawer */}
+                <Icon as={AiOutlineRightSquare} w={6} h={6} />
+              </Button>
             </Box>
           </VStack>
-          <Button
-            alignSelf="flex-end"
-            w="100px"
-            onClick={toggleNavigationDrawer}
-          >
-            Icon
-          </Button>
         </Flex>
       )}
       <Drawer
@@ -69,5 +93,5 @@ function NavigationDrawer() {
       </Drawer>
     </>
   );
-}
+};
 export default NavigationDrawer;
