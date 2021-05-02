@@ -18,6 +18,21 @@
         "style": "@emotion/styled",
         "linter": "eslint"
       }
+    },
+    "@nrwl/angular:application": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress",
+      "strict": true
+    },
+    "@nrwl/angular:library": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "css"
     }
   },
   "projects": {
@@ -316,6 +331,126 @@
           "options": {
             "lintFilePatterns": [
               "apps/lightning-v3-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "thunder": {
+      "projectType": "application",
+      "root": "apps/thunder",
+      "sourceRoot": "apps/thunder/src",
+      "prefix": "snurbco",
+      "targets": {
+        "build": {
+          "executor": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/thunder",
+            "index": "apps/thunder/src/index.html",
+            "main": "apps/thunder/src/main.ts",
+            "polyfills": "apps/thunder/src/polyfills.ts",
+            "tsConfig": "apps/thunder/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/thunder/src/favicon.ico",
+              "apps/thunder/src/assets"
+            ],
+            "styles": [
+              "apps/thunder/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/thunder/src/environments/environment.ts",
+                  "with": "apps/thunder/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "thunder:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "thunder:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "thunder:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/thunder/src/**/*.ts",
+              "apps/thunder/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/thunder"
+          ],
+          "options": {
+            "jestConfig": "apps/thunder/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "thunder-e2e": {
+      "root": "apps/thunder-e2e",
+      "sourceRoot": "apps/thunder-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/thunder-e2e/cypress.json",
+            "tsConfig": "apps/thunder-e2e/tsconfig.e2e.json",
+            "devServerTarget": "thunder:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "thunder:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/thunder-e2e/**/*.{js,ts}"
             ]
           }
         }

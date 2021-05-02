@@ -4,5 +4,6 @@ module.exports = {
     '<rootDir>/apps/api',
     '<rootDir>/libs/contracts',
     '<rootDir>/apps/lightning-v3',
+    '<rootDir>/apps/thunder',
   ],
 };
