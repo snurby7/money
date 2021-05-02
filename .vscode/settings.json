@@ -4,5 +4,6 @@
     "Formik",
     "nestjs",
     "snurbco"
-  ]
+  ],
+  "vsicons.presets.angular": true
 }

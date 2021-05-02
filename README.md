@@ -23,7 +23,7 @@ Setup guide can be found [here](./readme/setup-instructions.md)
 ## Quick Start
 
 ```bash
--> git clone https://gitlab.com/project-mammoth/mammoth-nx.git
+-> git clone https://gitlab.com/project-mammoth/snurbco-nx.git
 -> npm install
 ```
 
