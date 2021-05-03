@@ -10,7 +10,7 @@ import { environment } from '../environments/environment';
 import { AgentsModule } from './agents/agents.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CoreModule, NavBarModule } from './core';
+import { CoreModule } from './core';
 import { AccountEffects } from './ngrx-store/effects/account.effects';
 import { BudgetEffects } from './ngrx-store/effects/budget.effects';
 import { mammothReducers } from './ngrx-store/reducers/mammoth.reducers';
@@ -34,7 +34,6 @@ import { mammothReducers } from './ngrx-store/reducers/mammoth.reducers';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AgentsModule,
     CoreModule,
-    NavBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

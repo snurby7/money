@@ -1,10 +1,36 @@
 {
-  "version": 2,
+  "version": 1,
   "cli": {
+    "analytics": false,
     "defaultCollection": "@nrwl/angular"
   },
-  "defaultProject": "lightning",
-  "generators": {
+  "defaultProject": "thunder",
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    },
     "@nrwl/react": {
       "application": {
         "style": "@emotion/styled",
@@ -18,21 +44,6 @@
         "style": "@emotion/styled",
         "linter": "eslint"
       }
-    },
-    "@nrwl/angular:application": {
-      "style": "css",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress",
-      "strict": true
-    },
-    "@nrwl/angular:library": {
-      "style": "css",
-      "linter": "eslint",
-      "unitTestRunner": "jest"
-    },
-    "@nrwl/angular:component": {
-      "style": "css"
     }
   },
   "projects": {
@@ -228,122 +239,14 @@
         }
       }
     },
-    "lightning-v3": {
-      "root": "apps/lightning-v3",
-      "sourceRoot": "apps/lightning-v3/src",
-      "projectType": "application",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/web:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/apps/lightning-v3",
-            "index": "apps/lightning-v3/src/index.html",
-            "main": "apps/lightning-v3/src/main.tsx",
-            "polyfills": "apps/lightning-v3/src/polyfills.ts",
-            "tsConfig": "apps/lightning-v3/tsconfig.app.json",
-            "assets": [
-              "apps/lightning-v3/src/favicon.ico",
-              "apps/lightning-v3/src/assets"
-            ],
-            "styles": [],
-            "scripts": [],
-            "webpackConfig": "@nrwl/react/plugins/webpack"
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/lightning-v3/src/environments/environment.ts",
-                  "with": "apps/lightning-v3/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "executor": "@nrwl/web:dev-server",
-          "options": {
-            "buildTarget": "lightning-v3:build"
-          },
-          "configurations": {
-            "production": {
-              "buildTarget": "lightning-v3:build:production"
-            }
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/lightning-v3/**/*.{ts,tsx,js,jsx}"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/lightning-v3"
-          ],
-          "options": {
-            "jestConfig": "apps/lightning-v3/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "lightning-v3-e2e": {
-      "root": "apps/lightning-v3-e2e",
-      "sourceRoot": "apps/lightning-v3-e2e/src",
-      "projectType": "application",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/lightning-v3-e2e/cypress.json",
-            "tsConfig": "apps/lightning-v3-e2e/tsconfig.e2e.json",
-            "devServerTarget": "lightning-v3:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "lightning-v3:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/lightning-v3-e2e/**/*.{js,ts}"
-            ]
-          }
-        }
-      }
-    },
     "thunder": {
       "projectType": "application",
       "root": "apps/thunder",
       "sourceRoot": "apps/thunder/src",
-      "prefix": "snurbco",
-      "targets": {
+      "prefix": "sample-playground",
+      "architect": {
         "build": {
-          "executor": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/apps/thunder",
             "index": "apps/thunder/src/index.html",
@@ -356,7 +259,7 @@
               "apps/thunder/src/assets"
             ],
             "styles": [
-              "apps/thunder/src/styles.css"
+              "apps/thunder/src/styles.scss"
             ],
             "scripts": []
           },
@@ -391,9 +294,10 @@
           }
         },
         "serve": {
-          "executor": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "thunder:build"
+            "browserTarget": "thunder:build",
+            "proxyConfig": "apps/thunder/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -402,13 +306,13 @@
           }
         },
         "extract-i18n": {
-          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "thunder:build"
           }
         },
         "lint": {
-          "executor": "@nrwl/linter:eslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "apps/thunder/src/**/*.ts",
@@ -417,7 +321,7 @@
           }
         },
         "test": {
-          "executor": "@nrwl/jest:jest",
+          "builder": "@nrwl/jest:jest",
           "outputs": [
             "coverage/apps/thunder"
           ],
