@@ -1,0 +1,24 @@
+<div>
+  This form does nothing ATM, need to use Auth0 until this is hooked up
+  <form class="new-user-form" [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <label>E-mail</label>
+      <input
+        required
+        placeholder="ryan@mail.com"
+        name="email"
+        formControlName="email"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <label>Password</label>
+      <input
+        type="password"
+        required
+        name="password"
+        formControlName="password"
+      />
+    </mat-form-field>
+    <button mat-raised-button type="submit">Create</button>
+  </form>
+</div>

@@ -1,0 +1,14 @@
+.cta-container {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  .left-content {
+  }
+  .right-content {
+    flex-grow: 1;
+  }
+}
+
+snurbco-navigation-bar {
+  margin-bottom: 1rem;
+}

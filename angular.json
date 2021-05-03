@@ -243,7 +243,7 @@
       "projectType": "application",
       "root": "apps/thunder",
       "sourceRoot": "apps/thunder/src",
-      "prefix": "sample-playground",
+      "prefix": "snurbco",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -259,6 +259,7 @@
               "apps/thunder/src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "apps/thunder/src/styles.scss"
             ],
             "scripts": []

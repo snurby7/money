@@ -1,23 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './core';
+import { AuthGuard } from '@auth0/auth0-angular';
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./landing/landing.module').then((m) => m.LandingModule),
-  },
-  {
-    path: 'login',
-    loadChildren: () =>
-      import('./login/login.module').then((m) => m.LoginModule),
+      import('./pages/landing/landing.module').then((m) => m.LandingModule),
   },
   {
     path: 'app',
     loadChildren: () =>
-      import('./features/features.module').then((m) => m.FeaturesModule),
+      import('./thunder-app/features.module').then((m) => m.FeaturesModule),
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'getting-started',
+    loadChildren: () =>
+      import('./pages/getting-started/getting-started.module').then(
+        (m) => m.GettingStartedModule
+      ),
+  },
+  {
+    path: 'features',
+    loadChildren: () =>
+      import('./pages/features/features.module').then((m) => m.FeaturesModule),
   },
 ];
 

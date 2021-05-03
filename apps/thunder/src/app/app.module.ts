@@ -1,7 +1,8 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
@@ -33,9 +34,30 @@ import { mammothReducers } from './ngrx-store/reducers/mammoth.reducers';
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AgentsModule,
+    AuthModule.forRoot({
+      domain: environment.auth0_domain,
+      clientId: environment.auth0_client_id,
+      redirectUri: `${window.location.origin}/app`,
+      httpInterceptor: {
+        allowedList: [
+          {
+            uriMatcher: (uri) => {
+              console.log(uri);
+              return true;
+            },
+            uri: `api/*`,
+            // tokenOptions: {
+            //   audience: environment.auth0_audience,
+            // },
+          },
+        ],
+      },
+    }),
     CoreModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

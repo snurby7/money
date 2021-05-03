@@ -1,0 +1,12 @@
+<div>
+  <button mat-raised-button (click)="existingUserClicked()">
+    <mat-icon>person_outline</mat-icon>
+    Existing
+  </button>
+  <button mat-raised-button (click)="newUserClicked()">
+    <mat-icon>person_add</mat-icon>
+    New
+  </button>
+  <snurbco-existing-user *ngIf="!isNewUser"></snurbco-existing-user>
+  <snurbco-new-user *ngIf="isNewUser"></snurbco-new-user>
+</div>
