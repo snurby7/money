@@ -59,7 +59,6 @@ export class BudgetEffects {
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           return response$(budgets.find((budget) => budget.id === id)!);
         }
-        console.log('request fired');
         return this._budgetAgent
           .getBudgetDetail(id)
           .pipe(flatMap((budget) => response$(budget)));

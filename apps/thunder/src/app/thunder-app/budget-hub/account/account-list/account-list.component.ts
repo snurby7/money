@@ -3,9 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { IAccount } from '@snurbco/contracts';
 import { Observable } from 'rxjs';
-import { GetAccountList } from '../../../ngrx-store/actions/account.actions';
-import { selectAccountList } from '../../../ngrx-store/selectors/account.selectors';
-import { IMammothState } from '../../../ngrx-store/state/mammoth.state';
+import { GetAccountList } from '../../../../ngrx-store/actions/account.actions';
+import { selectAccountList } from '../../../../ngrx-store/selectors/account.selectors';
+import { IMammothState } from '../../../../ngrx-store/state/mammoth.state';
 
 @Component({
   selector: 'snurbco-account-list',

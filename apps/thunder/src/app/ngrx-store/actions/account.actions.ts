@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { IAccount } from '@snurbco/contracts';
+import { IAccount, ICreateAccount } from '@snurbco/contracts';
 
 export enum EAccountAction {
   GetAccountList = '[Account] Get Account List',
@@ -27,4 +27,14 @@ export const GetAccount = createAction(
 export const GetAccount_Success = createAction(
   EAccountAction.GetAccount_Success,
   props<{ selectedAccount: IAccount }>()
+);
+
+// Create a new account
+export const CreateAccount = createAction(
+  EAccountAction.CreateAccount,
+  props<{ account: ICreateAccount }>()
+);
+export const CreateAccount_Success = createAction(
+  EAccountAction.CreateAccount_Success,
+  props<{ account: IAccount }>()
 );

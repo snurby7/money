@@ -7,21 +7,22 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { BudgetAgent } from '../../agents';
 import { BudgetDialogModule } from './budget-dialog/budget-dialog.module';
+import { BudgetSelectionRoutingModule } from './budget-selection-routing.module';
 import { BudgetComponent } from './budget.component';
-import { BudgetService } from './budget.service';
 
 @NgModule({
   declarations: [BudgetComponent],
   imports: [
+    BudgetDialogModule,
+    BudgetSelectionRoutingModule,
     CommonModule,
     MatButtonModule,
     MatCardModule,
     MatDialogModule,
     MatIconModule,
     RouterModule,
-    BudgetDialogModule,
   ],
   exports: [BudgetComponent],
-  providers: [BudgetAgent, BudgetService],
+  providers: [BudgetAgent],
 })
-export class BudgetModule {}
+export class BudgetSelectionModule {}

@@ -6,22 +6,24 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
-import { AccountModule } from '../account/account.module';
-import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardComponent } from './dashboard.component';
+import { AccountModule } from './account/account.module';
+import { BudgetHubRoutingModule } from './budget-hub-routing.module';
+import { BudgetHubComponent } from './budget-hub.component';
+import { TransactionsModule } from './transactions';
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [BudgetHubComponent],
   imports: [
     AccountModule,
+    BudgetHubRoutingModule,
     CommonModule,
-    DashboardRoutingModule,
     MatButtonModule,
     MatIconModule,
     MatListModule,
     MatSidenavModule,
     MatToolbarModule,
     RouterModule,
+    TransactionsModule,
   ],
 })
-export class DashboardModule {}
+export class BudgetHubModule {}

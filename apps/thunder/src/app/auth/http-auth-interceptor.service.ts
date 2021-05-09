@@ -21,7 +21,6 @@ export class HttpInterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return this.auth.idTokenClaims$.pipe(
       mergeMap((token) => {
-        console.log(token?.__raw);
         const rawToken = token?.__raw;
         if (rawToken) {
           const tokenReq = req.clone({

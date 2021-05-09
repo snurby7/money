@@ -8,9 +8,8 @@ import { selectSelectedBudget } from '../../ngrx-store/selectors/budget.selector
 import { IMammothState } from '../../ngrx-store/state/mammoth.state';
 
 @Injectable()
-export class DashboardLoadGuard implements CanActivate {
+export class BudgetHubLoadGuard implements CanActivate {
   constructor(private _store: Store<IMammothState>) {}
-
 
   /**
    * Route guard which will ensure that there is a selected budget before allowing this route to load.
@@ -18,7 +17,7 @@ export class DashboardLoadGuard implements CanActivate {
    *
    * @param {ActivatedRouteSnapshot} route
    * @returns
-   * @memberof DashboardLoadGuard
+   * @memberof HubLoadGuard
    */
   public canActivate(route: ActivatedRouteSnapshot) {
     return this._store.pipe(

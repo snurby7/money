@@ -6,6 +6,13 @@
         "vsicons.presets.angular": true,
         "files.exclude": {
             "**/apps/lightning*": true,
-        }
+        },
+        "search.exclude": {
+            "**/apps/lightning*": true,
+        },
+        "cSpell.words": [
+            "Sidenav",
+            "ngrx"
+        ]
     }
 }

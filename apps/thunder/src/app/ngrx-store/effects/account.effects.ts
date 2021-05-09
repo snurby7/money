@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
-import { map, mergeMap, withLatestFrom } from 'rxjs/operators';
+import { map, mergeMap, switchMap, withLatestFrom } from 'rxjs/operators';
 import { AccountAgent } from '../../agents';
-import { EAccountAction } from '../actions/account.actions';
+import { EAccountAction, CreateAccount } from '../actions/account.actions';
 import { selectSelectedBudget } from '../selectors/budget.selectors';
 import { IMammothState } from '../state/mammoth.state';
 
@@ -20,6 +20,20 @@ export class AccountEffects {
             accounts,
           }))
           // catchError(() => of({ type: EAccountAction.GetAccounts_Fail }))
+        )
+      )
+    )
+  );
+
+  createBudget$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(EAccountAction.CreateAccount),
+      switchMap((account) =>
+        this.accountAgent.createAccount(account.budgetId, account).pipe(
+          map((account) => ({
+            type: EAccountAction.CreateAccount_Success,
+            account,
+          }))
         )
       )
     )

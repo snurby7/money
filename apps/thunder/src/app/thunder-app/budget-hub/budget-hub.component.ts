@@ -2,11 +2,11 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 
 @Component({
-  selector: 'snurbco-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
+  selector: 'snurbco-budget-hub',
+  templateUrl: './budget-hub.component.html',
+  styleUrls: ['./budget-hub.component.scss'],
 })
-export class DashboardComponent implements OnDestroy {
+export class BudgetHubComponent implements OnDestroy {
   public mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
 

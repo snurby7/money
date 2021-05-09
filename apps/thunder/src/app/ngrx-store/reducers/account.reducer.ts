@@ -1,7 +1,8 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import {
-    GetAccountList_Success,
-    GetAccount_Success
+  CreateAccount_Success,
+  GetAccountList_Success,
+  GetAccount_Success,
 } from '../actions/account.actions';
 import { IAccountState, initialAccountState } from '../state/account.state';
 
@@ -14,6 +15,10 @@ export const reducers = createReducer(
   on(GetAccount_Success, (state, { selectedAccount }) => ({
     ...state,
     selectedAccount,
+  })),
+  on(CreateAccount_Success, (state, { account }) => ({
+    ...state,
+    accounts: [...state.accounts, account],
   }))
 );
 

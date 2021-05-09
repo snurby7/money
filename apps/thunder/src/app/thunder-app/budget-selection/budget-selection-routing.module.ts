@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BudgetComponent } from './budget.component';
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: () =>
-      import('./budget-selection/budget-selection.module').then(
-        (m) => m.BudgetSelectionModule
-      ),
+    path: '', // loads at /app
+    component: BudgetComponent,
   },
 ];
 
@@ -15,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class FeaturesRoutingModule {}
+export class BudgetSelectionRoutingModule {}

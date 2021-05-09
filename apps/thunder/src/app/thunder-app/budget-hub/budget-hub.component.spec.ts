@@ -7,17 +7,17 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { AccountModule } from '../account/account.module';
-import { DashboardComponent } from './dashboard.component';
+import { AccountModule } from './account/account.module';
+import { BudgetHubComponent } from './budget-hub.component';
 
-describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+describe('BudgetHubComponent', () => {
+  let component: BudgetHubComponent;
+  let fixture: ComponentFixture<BudgetHubComponent>;
   let store: MockStore;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DashboardComponent],
+      declarations: [BudgetHubComponent],
       imports: [
         AccountModule,
         MatButtonModule,
@@ -45,7 +45,7 @@ describe('DashboardComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardComponent);
+    fixture = TestBed.createComponent(BudgetHubComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
     store = TestBed.inject(MockStore);

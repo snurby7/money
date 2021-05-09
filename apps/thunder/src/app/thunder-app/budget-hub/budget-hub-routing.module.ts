@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard.component';
-import { DashboardLoadGuard } from './dashboard.guard';
+import { BudgetHubComponent } from './budget-hub.component';
+import { BudgetHubLoadGuard } from './budget-hub.guard';
 
 const routes: Routes = [
   {
     path: 'v1/:budgetId',
-    component: DashboardComponent,
-    canActivate: [DashboardLoadGuard],
+    component: BudgetHubComponent,
+    canActivate: [BudgetHubLoadGuard],
     children: [
       {
         path: 'account',
         loadChildren: () =>
-          import('../account/account.module').then((m) => m.AccountModule),
+          import('./account/account.module').then((m) => m.AccountModule),
       },
     ],
   },
@@ -21,6 +21,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [DashboardLoadGuard],
+  providers: [BudgetHubLoadGuard],
 })
-export class DashboardRoutingModule {}
+export class BudgetHubRoutingModule {}
