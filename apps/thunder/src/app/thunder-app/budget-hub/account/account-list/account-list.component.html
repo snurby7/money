@@ -1,8 +1,12 @@
 <p>account-list works!</p>
 <ul>
   <li *ngFor="let account of accounts$ | async">
-    <button mat-button (click)="onAccountClick(account)">
+    <button mat-button (click)="viewAccount(account)">
       {{ account.name }} - {{ account.balance }}
     </button>
   </li>
+  <button mat-button (click)="createNewAccount()">
+    <mat-icon>add</mat-icon>
+    Create Account
+  </button>
 </ul>

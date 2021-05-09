@@ -30,11 +30,11 @@ export const GetAccount_Success = createAction(
 );
 
 // Create a new account
-export const CreateAccount = createAction(
+export const createNewAccount = createAction(
   EAccountAction.CreateAccount,
   props<{ account: ICreateAccount }>()
 );
-export const CreateAccount_Success = createAction(
+export const createNewAccount_Success = createAction(
   EAccountAction.CreateAccount_Success,
   props<{ account: IAccount }>()
 );

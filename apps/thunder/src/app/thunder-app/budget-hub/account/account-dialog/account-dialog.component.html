@@ -1,0 +1,43 @@
+<h1 mat-dialog-title>Add new budget</h1>
+<div mat-dialog-content>
+  <p>Add your new budget, just fill out some fields.</p>
+  <form (ngSubmit)="submitForm()">
+    <mat-form-field>
+      <mat-label>Account Name</mat-label>
+      <input matInput required name="accountName" [(ngModel)]="accountName" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <mat-select required name="accountType" [(ngModel)]="accountType">
+        <mat-option
+          *ngFor="let type of AccountTypes | enumToArray"
+          [value]="type.value"
+        >
+          {{ type.value }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Balance</mat-label>
+      <input
+        matInput
+        type="number"
+        required
+        name="accountBalance"
+        [(ngModel)]="accountBalance"
+      />
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button color="warn" (click)="cancelDialog()">Cancel</button>
+  <button
+    mat-button
+    color="primary"
+    type="submit"
+    mat-button
+    (click)="submitForm()"
+  >
+    Save
+  </button>
+</div>

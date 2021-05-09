@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { map, mergeMap, switchMap, withLatestFrom } from 'rxjs/operators';
 import { AccountAgent } from '../../agents';
-import { CreateAccount, EAccountAction } from '../actions/account.actions';
+import { createNewAccount, EAccountAction } from '../actions/account.actions';
 import { selectSelectedBudget } from '../selectors/budget.selectors';
 import { IMammothState } from '../state/mammoth.state';
 
@@ -27,7 +27,7 @@ export class AccountEffects {
 
   createAccount$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(CreateAccount),
+      ofType(createNewAccount),
       switchMap(({ account }) =>
         this.accountAgent.createAccount(account.budgetId, account).pipe(
           map((account) => ({
