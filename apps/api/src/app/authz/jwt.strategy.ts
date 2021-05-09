@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
+import * as dotenv from 'dotenv';
 import { passportJwtSecret } from 'jwks-rsa';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 
-require('dotenv').config();
+dotenv.config();
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -13,11 +14,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         cache: true,
         rateLimit: true,
         jwksRequestsPerMinute: 5,
-        jwksUri: `${process.env.NX_AUTH0_DOMAIN}/.well-known/jwks.json`,
+        jwksUri: 'https://dev-mammoth.auth0.com/.well-known/jwks.json',
       }),
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      audience: process.env.NX_AUTH0_AUDIENCE,
-      issuer: process.env.NX_AUTH0_DOMAIN,
+      audience: 'https://mammoth.api.com',
+      issuer: 'https://dev-mammoth.auth0.com/',
       algorithms: ['RS256'],
     });
   }

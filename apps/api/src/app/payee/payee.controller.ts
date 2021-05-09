@@ -6,9 +6,7 @@ import {
   HttpStatus,
   Param,
   Post,
-  UseGuards,
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { IPayee } from '@snurbco/contracts';
 import { Observable } from 'rxjs';
@@ -26,7 +24,8 @@ export class PayeeController {
     status: 201,
     description: 'Returns the newly created payee',
   })
-  @UseGuards(AuthGuard('jwt'))
+  //  @UseGuards(AuthGuard('jwt'))
+  // TODO: Turn back on Auth0, something is slightly off.
   public createPayee(
     @Param('budgetId') budgetId: string,
     @Body() createRequest: CreatePayee
@@ -46,7 +45,8 @@ export class PayeeController {
     status: 201,
     description: 'All payees that match the given request',
   })
-  @UseGuards(AuthGuard('jwt'))
+  //  @UseGuards(AuthGuard('jwt'))
+  // TODO: Turn back on Auth0, something is slightly off.
   public getAllPayees(
     @Param('budgetId') budgetId: string
   ): Observable<IPayee[]> {

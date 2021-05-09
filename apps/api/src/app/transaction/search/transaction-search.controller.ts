@@ -1,5 +1,4 @@
-import { Controller, Get, Param, Query, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { IDateRangeSearchQuery, ITransactionDetail } from '@snurbco/contracts';
 import { Observable } from 'rxjs';
@@ -20,7 +19,8 @@ export class TransactionSearchController {
     description: 'Transactions that are linked to the accountId',
   })
   @Get(':budgetId/account/:accountId')
-  @UseGuards(AuthGuard('jwt'))
+  //  @UseGuards(AuthGuard('jwt'))
+  // TODO: Turn back on Auth0, something is slightly off.
   public getTransactionsForAccount(
     @Param('budgetId') budgetId: string,
     @Param('accountId') accountId: string
@@ -40,7 +40,8 @@ export class TransactionSearchController {
     description: 'Transactions that are linked to the payeeId',
   })
   @Get(':budgetId/payee/:payeeId')
-  @UseGuards(AuthGuard('jwt'))
+  //  @UseGuards(AuthGuard('jwt'))
+  // TODO: Turn back on Auth0, something is slightly off.
   public getTransactionsForPayee(
     @Param('budgetId') budgetId: string,
     @Param('payeeId') payeeId: string
@@ -60,7 +61,8 @@ export class TransactionSearchController {
     description: 'Transactions that are linked to the categoryId',
   })
   @Get(':budgetId/category/:categoryId')
-  @UseGuards(AuthGuard('jwt'))
+  //  @UseGuards(AuthGuard('jwt'))
+  // TODO: Turn back on Auth0, something is slightly off.
   public getTransactionsForCategory(
     @Param('budgetId') budgetId: string,
     @Param('categoryId') categoryId: string
@@ -80,7 +82,8 @@ export class TransactionSearchController {
     description: 'Transactions that are between two dates',
   })
   @Get(':budgetId/search-date-range')
-  @UseGuards(AuthGuard('jwt'))
+  //  @UseGuards(AuthGuard('jwt'))
+  // TODO: Turn back on Auth0, something is slightly off.
   public getTransactionsByQuery(
     @Param('budgetId') budgetId: string,
     @Query() query: IDateRangeSearchQuery

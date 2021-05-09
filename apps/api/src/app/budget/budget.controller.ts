@@ -6,9 +6,7 @@ import {
   Get,
   Param,
   Post,
-  UseGuards,
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { IBudget, IDeleteResponse } from '@snurbco/contracts';
 import { Observable } from 'rxjs';
@@ -32,7 +30,8 @@ export class BudgetController {
     status: 201,
     description: 'The newly created budget is returned',
   })
-  @UseGuards(AuthGuard('jwt'))
+  //  @UseGuards(AuthGuard('jwt'))
+  // TODO: Turn back on Auth0, something is slightly off.
   public createNewBudget(@Body() budgetRequest: Budget): Observable<IBudget> {
     return this.budgetService.createBudget(budgetRequest);
   }
@@ -46,7 +45,8 @@ export class BudgetController {
     status: 200,
     description: 'A list of all budgets and their properties and labels.',
   })
-  @UseGuards(AuthGuard('jwt'))
+  //  @UseGuards(AuthGuard('jwt'))
+  // TODO: Turn back on Auth0, something is slightly off.
   public queryBudgets(@Body() query: BudgetQuery): Observable<IBudget[]> {
     return this.budgetService.queryBudgets(query);
   }
@@ -60,7 +60,8 @@ export class BudgetController {
     status: 200,
     description: 'A single budget and its properties and labels',
   })
-  @UseGuards(AuthGuard('jwt'))
+  //  @UseGuards(AuthGuard('jwt'))
+  // TODO: Turn back on Auth0, something is slightly off.
   public getBudget(@Param('id') id: string): Observable<IBudget> {
     return this.budgetService.getBudget(id);
   }
@@ -70,7 +71,8 @@ export class BudgetController {
     description:
       'Update a single budget, currently only updates the name property and everything else remains the same',
   })
-  @UseGuards(AuthGuard('jwt'))
+  //  @UseGuards(AuthGuard('jwt'))
+  // TODO: Turn back on Auth0, something is slightly off.
   public updateExistingBudget(
     @Param('id') budgetId: string,
     @Body() request: UpdateBudget
@@ -93,7 +95,8 @@ export class BudgetController {
       'Returns back a message saying how many nodes have been deleted. Data will need to refresh itself after making this request.',
   })
   @Delete(':id')
-  @UseGuards(AuthGuard('jwt'))
+  //  @UseGuards(AuthGuard('jwt'))
+  // TODO: Turn back on Auth0, something is slightly off.
   public removeBudgetById(
     @Param('id') id: string
   ): Observable<IDeleteResponse> {

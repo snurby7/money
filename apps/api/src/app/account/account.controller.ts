@@ -7,9 +7,7 @@ import {
   HttpStatus,
   Param,
   Post,
-  UseGuards,
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { IAccount, IDeleteResponse } from '@snurbco/contracts';
 import { Observable } from 'rxjs';
@@ -31,7 +29,8 @@ export class AccountController {
     status: 201,
     description: 'The newly created account is returned',
   })
-  @UseGuards(AuthGuard('jwt'))
+  //  @UseGuards(AuthGuard('jwt'))
+  // TODO: Turn back on Auth0, something is slightly off.
   public createNewAccount(
     @Param('budgetId') budgetId: string,
     @Body() accountRequest: CreateAccount
@@ -54,7 +53,8 @@ export class AccountController {
     status: 200,
     description: 'A list of all accounts and their properties and labels.',
   })
-  @UseGuards(AuthGuard('jwt'))
+  //  @UseGuards(AuthGuard('jwt'))
+  // TODO: Turn back on Auth0, something is slightly off.
   public getAllAccountsForBudgetId(
     @Param('budgetId') budgetId: string
   ): Observable<IAccount[]> {
@@ -72,7 +72,8 @@ export class AccountController {
     status: 200,
     description: 'A single account and its properties and labels',
   })
-  @UseGuards(AuthGuard('jwt'))
+  //  @UseGuards(AuthGuard('jwt'))
+  // TODO: Turn back on Auth0, something is slightly off.
   public getAccount(
     @Param('budgetId') budgetId: string,
     @Param('accountId') id: string
@@ -86,7 +87,8 @@ export class AccountController {
     description:
       'Update a single account, currently only updates the name property and everything else remains the same',
   })
-  @UseGuards(AuthGuard('jwt'))
+  //  @UseGuards(AuthGuard('jwt'))
+  // TODO: Turn back on Auth0, something is slightly off.
   public updateAccountDetails(
     @Param('budgetId') budgetId: string,
     @Param('accountId') id: string,
@@ -113,7 +115,8 @@ export class AccountController {
       'Returns back a message saying how many nodes have been deleted. Data will need to refresh itself after making this request.',
   })
   @Delete(':budgetId/account/:accountId')
-  @UseGuards(AuthGuard('jwt'))
+  //  @UseGuards(AuthGuard('jwt'))
+  // TODO: Turn back on Auth0, something is slightly off.
   public deleteAccount(
     @Param('budgetId') budgetId: string,
     @Param('accountId') accountId: string

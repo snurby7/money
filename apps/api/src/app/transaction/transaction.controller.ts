@@ -5,9 +5,7 @@ import {
   Delete,
   Param,
   Post,
-  UseGuards,
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { IDeleteResponse, ITransactionDetail } from '@snurbco/contracts';
 import { Observable } from 'rxjs';
@@ -31,7 +29,8 @@ export class TransactionController {
     description: 'Returns back a single, newly created transaction',
   })
   @Post(':budgetId')
-  @UseGuards(AuthGuard('jwt'))
+  //  @UseGuards(AuthGuard('jwt'))
+  // TODO: Turn back on Auth0, something is slightly off.
   public createTransaction(
     @Param('budgetId') budgetId: string,
     @Body() request: TransactionCreateDto
@@ -55,7 +54,8 @@ export class TransactionController {
       'Returns back the updated transactions with its properties and labels after being updated',
   })
   @Post(':budgetId/detail/:transactionId')
-  @UseGuards(AuthGuard('jwt'))
+  //  @UseGuards(AuthGuard('jwt'))
+  // TODO: Turn back on Auth0, something is slightly off.
   public updateTransaction(
     @Param('budgetId') budgetId: string,
     @Param('transactionId') transactionId: string,
@@ -83,7 +83,8 @@ export class TransactionController {
       'Returns back a message saying how many nodes have been deleted. Data will need to refresh itself after making this request.',
   })
   @Delete(':budgetId/detail/:transactionId')
-  @UseGuards(AuthGuard('jwt'))
+  //  @UseGuards(AuthGuard('jwt'))
+  // TODO: Turn back on Auth0, something is slightly off.
   public deleteTransaction(
     @Param('budgetId') budgetId: string,
     @Param('transactionId') transactionId: string
