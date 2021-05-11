@@ -10,6 +10,11 @@ const routes: Routes = [
     canActivate: [BudgetHubLoadGuard],
     children: [
       {
+        path: '',
+        loadChildren: () =>
+          import('./hub-base/hub-base.module').then((m) => m.HubBaseModule),
+      },
+      {
         path: 'account',
         loadChildren: () =>
           import('./account/account.module').then((m) => m.AccountModule),

@@ -26,6 +26,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/features/features.module').then((m) => m.FeaturesModule),
   },
+  { path: 'hub-base', loadChildren: () => import('./thunder-app/budget-hub/hub-base/hub-base.module').then(m => m.HubBaseModule) },
 ];
 
 @NgModule({
