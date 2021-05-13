@@ -1,16 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect } from '@ngrx/effects';
-import { withLatestFrom } from 'rxjs/operators';
-import { getCategoryList } from '../actions/category.actions';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { select, Store } from '@ngrx/store';
+import { map, mergeMap, tap, withLatestFrom } from 'rxjs/operators';
+import { CategoryAgent } from '../../agents';
+import {
+  CategoryAction,
+  getCategoryList_Success,
+} from '../actions/category.actions';
 import { selectSelectedBudget } from '../selectors/budget.selectors';
+import { IMammothState } from '../state/mammoth.state';
 
 @Injectable()
 export class CategoryEffects {
   loadCategories$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(getCategoryList),
+      tap(() => console.log('here it is')),
+      ofType(CategoryAction.GetCategoryList),
       withLatestFrom(this._store.pipe(select(selectSelectedBudget))),
-      mergeMap(([_, budget]) => this.category)
+      mergeMap(([_, budget]) =>
+        this.categoryAgent
+          .getCategories(budget?.id)
+          .pipe(map((categories) => getCategoryList_Success({ categories })))
+      )
     )
   );
 

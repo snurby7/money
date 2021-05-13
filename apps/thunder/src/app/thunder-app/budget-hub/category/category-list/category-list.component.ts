@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { ICategory } from '@snurbco/contracts';
-import { IMammothState } from '../../../../ngrx-store/state/mammoth.state';
 import { Observable } from 'rxjs';
+import { getCategoryList } from '../../../../ngrx-store/actions/category.actions';
+import { selectCategoryList } from '../../../../ngrx-store/selectors/category.selectors';
+import { IMammothState } from '../../../../ngrx-store/state/mammoth.state';
 
 @Component({
   selector: 'snurbco-category-list',
@@ -14,8 +16,10 @@ export class CategoryListComponent implements OnInit {
   public categories$: Observable<ICategory[]>;
 
   constructor(private _store: Store<IMammothState>) {
-    this.categories$ = this._store.pipe(select(selectCatgoryList));
+    this.categories$ = this._store.pipe(select(selectCategoryList));
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._store.dispatch(getCategoryList());
+  }
 }

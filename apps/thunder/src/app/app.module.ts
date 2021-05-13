@@ -15,6 +15,7 @@ import { HttpInterceptorService } from './auth/http-auth-interceptor.service';
 import { CoreModule } from './core';
 import { AccountEffects } from './ngrx-store/effects/account.effects';
 import { BudgetEffects } from './ngrx-store/effects/budget.effects';
+import { CategoryEffects } from './ngrx-store/effects/category.effects';
 import { mammothReducers } from './ngrx-store/reducers/mammoth.reducers';
 
 @NgModule({
@@ -31,7 +32,7 @@ import { mammothReducers } from './ngrx-store/reducers/mammoth.reducers';
         strictStateImmutability: true,
       },
     }),
-    EffectsModule.forRoot([BudgetEffects, AccountEffects]),
+    EffectsModule.forRoot([BudgetEffects, AccountEffects, CategoryEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AgentsModule,

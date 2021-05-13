@@ -1,8 +1,13 @@
 import { createAction, props } from '@ngrx/store';
 import { ICategory } from '@snurbco/contracts';
 
-export const getCategoryList = createAction('[Category] Get Category List');
+export enum CategoryAction {
+  GetCategoryList = '[Category] Get Category List',
+  GetCategoryList_Success = '[Category] Get Category List Success',
+}
+
+export const getCategoryList = createAction(CategoryAction.GetCategoryList);
 export const getCategoryList_Success = createAction(
-  '[Category] Get Category List Success',
+  CategoryAction.GetCategoryList_Success,
   props<{ categories: ICategory[] }>()
 );
