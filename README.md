@@ -4,8 +4,6 @@ This project was generated using [Nx](https://nx.dev).
 
 🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
 
-🔎 To learn more about Nx go [here](./readme/nx-readme.md)
-
 ## External Docs
 
 - https://cli.angular.io/
@@ -18,12 +16,12 @@ This project was generated using [Nx](https://nx.dev).
 
 ## Set Up Instruction
 
-Setup guide can be found [here](./readme/setup-instructions.md)
+Setup guide can be found [here](./readme.setup.md)
 
 ## Quick Start
 
 ```bash
--> git clone https://gitlab.com/project-mammoth/snurbco-nx.git
+-> git clone https://github.com/snurby7/money.git
 -> npm install
 ```
 
