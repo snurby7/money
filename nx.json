@@ -14,39 +14,37 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ]
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
       }
     }
   },
   "projects": {
-    "lightning": {
-      "tags": []
-    },
-    "lightning-e2e": {
-      "tags": [],
-      "implicitDependencies": [
-        "lightning"
-      ]
-    },
     "api": {
       "tags": []
     },
     "contracts": {
       "tags": []
     },
+    "lightning": {
+      "tags": []
+    },
+    "lightning-e2e": {
+      "tags": [],
+      "implicitDependencies": ["lightning"]
+    },
+    "moneystorm": {
+      "tags": []
+    },
+    "moneystorm-e2e": {
+      "tags": [],
+      "implicitDependencies": ["moneystorm"]
+    },
     "thunder": {
       "tags": []
     },
     "thunder-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "thunder"
-      ]
+      "implicitDependencies": ["thunder"]
     }
   }
 }
